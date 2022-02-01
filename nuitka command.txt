@@ -1,0 +1,4 @@
+python -m nuitka --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico Tahkik.pyw
+
+
+ python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico Archive.pyw
