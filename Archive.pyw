@@ -4,6 +4,17 @@ from tkinter import ttk
 from tkinter import messagebox
 import mysql.connector
 from threading import Timer
+import configparser
+import os
+
+# Read database configuration from config.ini
+config = configparser.ConfigParser()
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+
+DB_HOST = config.get('database', 'host')
+DB_NAME = config.get('database', 'database')
+DB_USER = config.get('database', 'user')
+DB_PASS = config.get('database', 'password')
 
 def update(rows):
 	trv.delete(*trv.get_children())
@@ -98,7 +109,7 @@ def delete_customer():
 	else:
 		return True
     
-mydb = mysql.connector.connect(host="192.168.1.4", database="crud", user="maitresoltani", passwd="123456")
+mydb = mysql.connector.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, passwd=DB_PASS)
 cursor = mydb.cursor(buffered=True)
 def reconnect():
 	global mydb

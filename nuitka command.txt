@@ -1,8 +1,28 @@
-python -m nuitka --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico Tahkik.pyw
+# =============================================================================
+# Nuitka Build Commands for AGC Application
+# =============================================================================
+# IMPORTANT: After building, you MUST copy config.ini to the output folder!
+# The config.ini file contains database connection settings.
+# =============================================================================
 
+# Build MainGC (Main Application)
+python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico --include-data-files=config.ini=config.ini --include-data-files=AGC.png=AGC.png MainGC.pyw
 
-python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico Archive.pyw
+# Build Archive
+python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico --include-data-files=config.ini=config.ini --include-data-files=AGC.png=AGC.png Archive.pyw
 
+# Build Ataab
+python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico --include-data-files=config.ini=config.ini --include-data-files=AGC.png=AGC.png Ataab.pyw
 
+# Build Chkaya
+python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico --include-data-files=config.ini=config.ini --include-data-files=AGC.png=AGC.png Chkaya.pyw
 
-mydb = mysql.connector.connect(host="192.168.1.4", database="crud", user="maitresoltani", passwd="123456")
+# Build Tahkik
+python -m nuitka --mingw64 --lto=no --standalone --plugin-enable=tk-inter --plugin-enable=pylint-warnings --windows-disable-console --windows-icon-from-ico=AGC.ico --include-data-files=config.ini=config.ini --include-data-files=AGC.png=AGC.png Tahkik.pyw
+
+# =============================================================================
+# NOTES:
+# - --include-data-files=config.ini=config.ini : Includes config.ini in the build
+# - --include-data-files=AGC.png=AGC.png : Includes the app icon image
+# - After deployment, client can edit config.ini to change database IP
+# =============================================================================
