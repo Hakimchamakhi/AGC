@@ -6,10 +6,19 @@ import mysql.connector
 from threading import Timer
 import configparser
 import os
+import sys
+
+# Get the correct directory path (works for both .pyw and compiled .exe)
+if getattr(sys, 'frozen', False):
+    # Running as compiled executable (Nuitka)
+    application_path = os.path.dirname(sys.executable)
+else:
+    # Running as script
+    application_path = os.path.dirname(os.path.abspath(__file__))
 
 # Read database configuration from config.ini
 config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+config.read(os.path.join(application_path, 'config.ini'))
 
 DB_HOST = config.get('database', 'host')
 DB_NAME = config.get('database', 'database')
