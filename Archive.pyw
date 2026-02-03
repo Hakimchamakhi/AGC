@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 import mysql.connector
+from threading import Timer
 
 def update(rows):
 	trv.delete(*trv.get_children())
@@ -97,9 +98,16 @@ def delete_customer():
 	else:
 		return True
     
-
-mydb = mysql.connector.connect()
+mydb = mysql.connector.connect(host="192.168.1.4", database="crud", user="maitresoltani", passwd="123456")
 cursor = mydb.cursor(buffered=True)
+def reconnect():
+	global mydb
+	global cursor
+	cursor.execute("SELECT * FROM tblreconnect")
+	Timer(18, reconnect).start()
+
+reconnect()
+
 
 root = Tk()
 q = StringVar()

@@ -99,7 +99,7 @@ def delete_customer():
 		return True
     
 
-mydb = mysql.connector.connect()
+mydb = mysql.connector.connect(host="192.168.1.4", database="crud", user="maitresoltani", passwd="123456")
 cursor = mydb.cursor(buffered=True)
 
 root = Tk()
